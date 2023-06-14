@@ -1,0 +1,34 @@
+version: 1
+
+formatters:
+    precise:
+        format: '%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(request)s - %(message)s'
+
+handlers:
+    file:
+        class: logging.handlers.TimedRotatingFileHandler
+        formatter: precise
+        filename: /var/log/matrix-synapse/generic_worker2.log
+        when: midnight
+        backupCount: 3
+        encoding: utf8
+
+    buffer:
+        class: synapse.logging.handlers.PeriodicallyFlushingMemoryHandler
+        target: file
+        capacity: 10
+        flushLevel: 30
+        period: 5
+
+loggers:
+    synapse.storage.SQL:
+        #level: DEBUG
+        level: INFO
+
+    twisted:
+        handlers: [file]
+        propagate: false
+
+root:
+    level: INFO
+    handlers: [buffer]
