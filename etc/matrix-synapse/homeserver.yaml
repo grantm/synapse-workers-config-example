@@ -46,13 +46,13 @@ federation_sender_instances:
 instance_map:
   main:
     host: localhost
-    port: 8008
+    port: 9093
   generic_worker1:
     host: localhost
-    port: 8101
+    port: 9101
   generic_worker2:
     host: localhost
-    port: 8102
+    port: 9102
 log_config: "/etc/matrix-synapse/log.yaml"
 media_store_path: "/var/lib/matrix-synapse/media"
 url_preview_enabled: true

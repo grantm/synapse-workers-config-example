@@ -13,5 +13,10 @@ worker_listeners:
      - names:
        - client
        - federation
+ - type: http
+   bind_address: "127.0.0.1"
+   port: 9102
+   resources:
+    - names: [replication]
 
 worker_log_config: /etc/matrix-synapse/workers/generic_worker2_log_config.yaml
