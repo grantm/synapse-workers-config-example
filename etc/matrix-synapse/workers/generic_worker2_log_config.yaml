@@ -22,7 +22,6 @@ handlers:
 
 loggers:
     synapse.storage.SQL:
-        #level: DEBUG
         level: INFO
 
     twisted:

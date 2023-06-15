@@ -1,0 +1,26 @@
+[Unit]
+Description=Synapse Receipts Writer
+AssertPathExists=/etc/matrix-synapse/workers/receipts_writer.yaml
+
+# This service should be restarted when the synapse target is restarted.
+PartOf=matrix-synapse.target
+ReloadPropagatedFrom=matrix-synapse.target
+
+# Let the main process start first, to initialise the database schema.
+Requires=matrix-synapse.service
+After=matrix-synapse.service
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=matrix-synapse
+WorkingDirectory=/var/lib/matrix-synapse
+EnvironmentFile=/etc/default/matrix-synapse
+ExecStart=/opt/venvs/matrix-synapse/bin/python -m synapse.app.generic_worker --config-path=/etc/matrix-synapse/homeserver.yaml --config-path=/etc/matrix-synapse/conf.d/ --config-path=/etc/matrix-synapse/workers/receipts_writer.yaml
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=3
+SyslogIdentifier=matrix-synapse-receipts-writer
+
+[Install]
+WantedBy=matrix-synapse.target

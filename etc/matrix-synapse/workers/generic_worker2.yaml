@@ -1,10 +1,6 @@
 worker_app: synapse.app.generic_worker
 worker_name: generic_worker2
 
-# The replication listener on the main synapse process.
-worker_replication_host: 127.0.0.1
-worker_replication_http_port: 9093
-
 worker_listeners:
  - type: http
    bind_addresses: ['127.0.0.1']
@@ -13,10 +9,11 @@ worker_listeners:
      - names:
        - client
        - federation
- - type: http
-   bind_address: "127.0.0.1"
-   port: 9102
-   resources:
-    - names: [replication]
+ # Not needed because this worker is only providing responses for Nginx not other workers
+ # - type: http
+ #   bind_address: "127.0.0.1"
+ #   port: 9102
+ #   resources:
+ #    - names: [replication]
 
 worker_log_config: /etc/matrix-synapse/workers/generic_worker2_log_config.yaml

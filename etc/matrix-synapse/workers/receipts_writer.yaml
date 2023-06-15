@@ -1,0 +1,17 @@
+worker_app: synapse.app.generic_worker
+worker_name: receipts_writer
+
+worker_listeners:
+ - type: http
+   bind_addresses: ['127.0.0.1']
+   port: 8112
+   resources:
+     - names:
+       - client
+ - type: http
+   bind_address: "127.0.0.1"
+   port: 9112
+   resources:
+    - names: [replication]
+
+worker_log_config: /etc/matrix-synapse/workers/receipts_writer_log_config.yaml

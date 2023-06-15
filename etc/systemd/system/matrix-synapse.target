@@ -1,0 +1,8 @@
+# Source: https://github.com/matrix-org/synapse/blob/develop/docs/systemd-with-workers/system/matrix-synapse.target
+#
+[Unit]
+Description=Synapse parent target
+After=network.target
+
+[Install]
+WantedBy=multi-user.target

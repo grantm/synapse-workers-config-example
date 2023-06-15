@@ -53,6 +53,20 @@ instance_map:
   generic_worker2:
     host: localhost
     port: 9102
+  generic_worker3:
+    host: localhost
+    port: 9103
+  events_persister1:
+    host: localhost
+    port: 9111
+  receipts_writer:
+    host: localhost
+    port: 9112
+stream_writers:
+  events:
+    - events_persister1
+  receipts: receipts_writer
+  typing: receipts_writer
 log_config: "/etc/matrix-synapse/log.yaml"
 media_store_path: "/var/lib/matrix-synapse/media"
 url_preview_enabled: true
