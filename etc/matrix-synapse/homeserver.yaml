@@ -46,15 +46,6 @@ instance_map:
   main:
     host: localhost
     port: 9093
-  generic_worker1:
-    host: localhost
-    port: 9101
-  generic_worker2:
-    host: localhost
-    port: 9102
-  generic_worker3:
-    host: localhost
-    port: 9103
   events_persister1:
     host: localhost
     port: 9111
