@@ -40,7 +40,6 @@ redis:
     enabled: true
     password: "secret redacted"
 worker_replication_secret: "secret redacted"
-send_federation: false
 federation_sender_instances:
     - federation_sender1
 instance_map:
@@ -143,4 +142,3 @@ user_consent:
   block_events_error: >-
     To continue using this service you must review and agree to the
     usage guidelines at %(consent_uri)s.
-upgrade_enables_federation: true
