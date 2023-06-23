@@ -1,0 +1,19 @@
+worker_app: synapse.app.generic_worker
+worker_name: generic3
+
+worker_listeners:
+  - type: http
+    bind_addresses: ['127.0.0.1']
+    port: 8103
+    resources:
+      - names:
+        - client
+        - federation
+  # Not needed because this worker is only providing responses for Nginx not other workers
+  # - type: http
+  #   bind_addresses: ['127.0.0.1']
+  #   port: 9103
+  #   resources:
+  #    - names: [replication]
+
+worker_log_config: /etc/matrix-synapse/workers/generic3_log_config.yaml

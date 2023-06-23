@@ -2,17 +2,17 @@ worker_app: synapse.app.generic_worker
 worker_name: events_persister1
 
 worker_listeners:
- - type: http
-   bind_address: "127.0.0.1"
-   port: 9111
-   resources:
-    - names: [replication]
- # This worker will not be receiving requests directly from clients
- # - type: http
- #   bind_addresses: ['127.0.0.1']
- #   port: 8111
- #   resources:
- #     - names:
- #       - client
+  # Not needed because this worker will not be receiving requests directly from clients
+  # - type: http
+  #   bind_addresses: ['127.0.0.1']
+  #   port: 8111
+  #   resources:
+  #     - names:
+  #       - client
+  - type: http
+    bind_addresses: ['127.0.0.1']
+    port: 9111
+    resources:
+     - names: [replication]
 
 worker_log_config: /etc/matrix-synapse/workers/events_persister1_log_config.yaml

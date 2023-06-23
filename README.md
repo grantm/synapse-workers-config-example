@@ -104,10 +104,27 @@ allows you to list multiple sender instances to share the outgoing traffic load.
 
 Reference docs: [Setting up Synapse with Workers and Systemd][systemd-workers-docs].
 
-It has been pointed out that the setup in this repo, with one unit file per
-worker type, is overly complex.  In practice the only difference is the worker
-name and that can be factored out to the part of the service name after the
-`@`.
+Three `systemd` unit files are provided:
+
+- [matrix-synapse.service](etc/systemd/system/matrix-synapse.service):
+  used to define the main `homeserver` process
+- [matrix-synapse-worker@.service](etc/systemd/system/matrix-synapse-worker@.service):
+  one unit file used by all the worker processes
+- [matrix-synapse.target](etc/systemd/system/matrix-synapse.target): a named
+  target that can be used to `stop`, `start`, `restart` the `homeserver` and all the workers
+
+You must enable each service as well as the target:
+
+```
+systemctl enable matrix-synapse.service
+systemctl enable matrix-synapse-worker@events_persister1.service
+systemctl enable matrix-synapse-worker@federation_sender1.service
+systemctl enable matrix-synapse-worker@generic1.service
+systemctl enable matrix-synapse-worker@generic2.service
+systemctl enable matrix-synapse-worker@generic3.service
+systemctl enable matrix-synapse-worker@receipts_writer.service
+systemctl enable matrix-synapse.target
+```
 
 The full set of processes can be restarted with:
 
