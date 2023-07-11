@@ -58,6 +58,8 @@ stream_writers:
   receipts: receipts_writer
   typing: receipts_writer
 log_config: "/etc/matrix-synapse/log.yaml"
+templates:
+  custom_template_directory: "/etc/matrix-synapse/templates"
 media_store_path: "/var/lib/matrix-synapse/media"
 url_preview_enabled: true
 url_preview_ip_range_blacklist: [127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 100.64.0.0/10, 169.254.0.0/16,
@@ -116,7 +118,6 @@ oidc_providers:
         localpart_template: "{{ user.preferred_username }}"
         display_name_template: "{{ user.given_name }} {{ user.last_name }}"
 sso:
-  template_dir: /etc/matrix-synapse/templates
   client_whitelist:
     - "https://chat.nz.example.com/"
 user_consent:
