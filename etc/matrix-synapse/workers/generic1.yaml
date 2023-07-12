@@ -5,9 +5,12 @@ worker_listeners:
   - type: http
     bind_addresses: ['127.0.0.1']
     port: 8101
+    tls: false
+    x_forwarded: true
     resources:
       - names:
         - client
+        - consent
         - federation
   # Not needed because this worker is only providing responses for Nginx not other workers
   # - type: http

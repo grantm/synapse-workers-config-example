@@ -5,6 +5,8 @@ worker_listeners:
   - type: http
     bind_addresses: ['127.0.0.1']
     port: 8112
+    tls: false
+    x_forwarded: true
     resources:
       - names:
         - client
